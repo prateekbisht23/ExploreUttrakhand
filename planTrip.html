@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan Your Trip - Uttarakhand Tourism</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#1e40af',
+secondary: '#047857'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px', 
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body { font-family: 'Poppins', sans-serif; }
+.date-input::-webkit-calendar-picker-indicator {
+  filter: invert(0.5);
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+</style>
+</head>
+<body class="bg-gray-50">
+
+<header class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+<div class="container mx-auto px-4">
+<div class="flex items-center justify-between h-20">
+<div class="flex items-center gap-2">
+<img src="https://public.readdy.ai/ai/img_res/45681c5882b32b7ffa3bc5a17be5efb6.jpg" alt="Uttarakhand Logo" class="h-12 w-12">
+<div>
+<h1 class="text-xl font-semibold">Uttarakhand</h1>
+<p class="text-sm text-gray-600">Simply Heaven</p>
+</div>
+</div>
+
+<nav class="hidden lg:flex items-center gap-8">
+<a href="https://readdy.ai/home/42ec9515-9a64-4bb2-8891-5ab62065fd54/2319b577-3359-421f-a516-fc9f45888cee" data-readdy="true" class="text-gray-600 hover:text-primary">Home</a>
+<a href="#" class="text-gray-600 hover:text-primary">About</a>
+<a href="#" class="text-primary font-medium">Tourism</a>
+<a href="#" class="text-gray-600 hover:text-primary">Culture</a>
+<a href="#" class="text-gray-600 hover:text-primary">Government</a>
+<a href="#" class="text-gray-600 hover:text-primary">Services</a>
+</nav>
+
+<div class="flex items-center gap-4">
+<div class="relative">
+<select class="appearance-none bg-gray-50 border border-gray-200 rounded-button px-4 py-2 pr-8 text-sm cursor-pointer">
+<option>English</option>
+<option>हिंदी</option>
+</select>
+<i class="ri-arrow-down-s-line absolute right-2 top-1/2 -translate-y-1/2"></i>
+</div>
+<button class="bg-primary text-white px-4 py-2 rounded-button text-sm font-medium hover:bg-primary/90 whitespace-nowrap">Emergency Help</button>
+</div>
+</div>
+</div>
+</header>
+
+<main class="pt-20">
+<nav class="bg-white border-b">
+<div class="container mx-auto px-4">
+<div class="flex items-center h-12 text-sm">
+<a href="https://readdy.ai/home/42ec9515-9a64-4bb2-8891-5ab62065fd54/2319b577-3359-421f-a516-fc9f45888cee" data-readdy="true" class="text-gray-600 hover:text-primary">Home</a>
+<i class="ri-arrow-right-s-line text-gray-400 mx-2"></i>
+<a href="#" class="text-gray-600 hover:text-primary">Tourism</a>
+<i class="ri-arrow-right-s-line text-gray-400 mx-2"></i>
+<span class="text-primary">Plan Your Trip</span>
+</div>
+</div>
+</nav>
+
+<section class="relative py-20 bg-cover bg-center" style="background-image: url('https://public.readdy.ai/ai/img_res/14788153493e40e9a59f6b91baf72306.jpg')">
+<div class="absolute inset-0 bg-black/50"></div>
+<div class="container mx-auto px-4 relative">
+<div class="max-w-3xl mx-auto text-center text-white">
+<h1 class="text-4xl md:text-5xl font-bold mb-6">Plan Your Perfect Uttarakhand Adventure</h1>
+<p class="text-xl mb-12">Customize your journey through the land of gods with our comprehensive trip planner</p>
+
+<div class="bg-white rounded-lg p-6">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="relative">
+<input type="text" placeholder="Destination" class="w-full pl-10 pr-4 py-3 rounded-button border-none text-gray-900 text-sm bg-gray-50">
+<i class="ri-map-pin-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+</div>
+<div class="relative">
+<input type="date" class="w-full pl-10 pr-4 py-3 rounded-button border-none text-gray-900 text-sm bg-gray-50 date-input">
+<i class="ri-calendar-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+</div>
+<div class="relative">
+<input type="number" placeholder="Travelers" min="1" class="w-full pl-10 pr-4 py-3 rounded-button border-none text-gray-900 text-sm bg-gray-50">
+<i class="ri-user-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+</div>
+<button onclick="searchTrips()" class="bg-primary text-white px-6 py-3 rounded-button font-medium hover:bg-primary/90 whitespace-nowrap">
+Search
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="py-16">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+<div class="lg:col-span-1">
+<div class="bg-white rounded-lg shadow-sm p-6">
+<h3 class="text-lg font-semibold mb-6">Refine Your Search</h3>
+
+<div class="space-y-6">
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Budget Range</label>
+<div class="relative">
+<input type="range" min="1000" max="100000" value="50000" class="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer" id="budgetRange">
+<div class="flex justify-between text-sm text-gray-600 mt-2">
+<span>₹1,000</span>
+<span id="budgetValue">₹50,000</span>
+<span>₹1,00,000</span>
+</div>
+</div>
+</div>
+
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Duration</label>
+<div class="grid grid-cols-3 gap-2">
+<button onclick="selectDuration(this, '1-3')" class="px-4 py-2 text-sm border rounded-full hover:bg-primary hover:text-white hover:border-primary">1-3 Days</button>
+<button onclick="selectDuration(this, '4-7')" class="px-4 py-2 text-sm border rounded-full hover:bg-primary hover:text-white hover:border-primary">4-7 Days</button>
+<button onclick="selectDuration(this, '7+')" class="px-4 py-2 text-sm border rounded-full hover:bg-primary hover:text-white hover:border-primary">7+ Days</button>
+</div>
+</div>
+
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Travel Style</label>
+<div class="space-y-2">
+<label class="flex items-center gap-2 cursor-pointer">
+<input type="checkbox" class="w-4 h-4 text-primary rounded">
+<span class="text-sm">Adventure</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input type="checkbox" class="w-4 h-4 text-primary rounded">
+<span class="text-sm">Spiritual</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input type="checkbox" class="w-4 h-4 text-primary rounded">
+<span class="text-sm">Nature</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input type="checkbox" class="w-4 h-4 text-primary rounded">
+<span class="text-sm">Cultural</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input type="checkbox" class="w-4 h-4 text-primary rounded">
+<span class="text-sm">Family</span>
+</label>
+</div>
+</div>
+
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Accommodation</label>
+<div class="space-y-2">
+<label class="flex items-center gap-2 cursor-pointer">
+<input type="checkbox" class="w-4 h-4 text-primary rounded">
+<span class="text-sm">Luxury Hotels</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input type="checkbox" class="w-4 h-4 text-primary rounded">
+<span class="text-sm">Resorts</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input type="checkbox" class="w-4 h-4 text-primary rounded">
+<span class="text-sm">Homestays</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input type="checkbox" class="w-4 h-4 text-primary rounded">
+<span class="text-sm">Camping</span>
+</label>
+</div>
+</div>
+
+<button onclick="applyFilters()" class="w-full bg-primary text-white px-4 py-2 rounded-button font-medium hover:bg-primary/90 mt-4">Apply Filters</button>
+</div>
+</div>
+</div>
+
+<div class="lg:col-span-3">
+<div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-semibold">Popular Packages</h2>
+<div class="flex gap-2">
+<button onclick="sortPackages('price')" class="px-4 py-2 text-sm border rounded-button hover:bg-gray-50">
+<i class="ri-money-dollar-circle-line mr-1"></i> Price
+</button>
+<button onclick="sortPackages('duration')" class="px-4 py-2 text-sm border rounded-button hover:bg-gray-50">
+<i class="ri-time-line mr-1"></i> Duration
+</button>
+<button onclick="sortPackages('rating')" class="px-4 py-2 text-sm border rounded-button hover:bg-gray-50">
+<i class="ri-star-line mr-1"></i> Rating
+</button>
+</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="packagesList">
+</div>
+</div>
+
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+<div class="p-6 border-b">
+<h2 class="text-xl font-semibold">Interactive Map</h2>
+</div>
+<div class="h-[400px] bg-cover bg-center" style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png')"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold mb-4">Why Plan with Us?</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Experience hassle-free trip planning with our comprehensive services and local expertise</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="text-center">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-map-2-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold mb-2">Expert Local Guides</h3>
+<p class="text-gray-600 text-sm">Get insights from our experienced local guides who know every corner of Uttarakhand</p>
+</div>
+
+<div class="text-center">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-shield-check-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold mb-2">Safe & Secure</h3>
+<p class="text-gray-600 text-sm">Travel with confidence with our verified services and 24/7 support</p>
+</div>
+
+<div class="text-center">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-wallet-3-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold mb-2">Best Prices</h3>
+<p class="text-gray-600 text-sm">Get competitive rates and exclusive deals on packages and accommodations</p>
+</div>
+
+<div class="text-center">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-customer-service-2-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold mb-2">24/7 Support</h3>
+<p class="text-gray-600 text-sm">Our dedicated team is always available to assist you throughout your journey</p>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="bg-gray-900 text-white py-20">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+<div>
+<div class="flex items-center gap-2 mb-6">
+<img src="https://public.readdy.ai/ai/img_res/80ddcf00f1a4a80c57daafa0cdc02c16.jpg" alt="Uttarakhand Logo" class="h-12 w-12">
+<div>
+<h3 class="text-xl font-semibold">Uttarakhand</h3>
+<p class="text-sm text-gray-400">Simply Heaven</p>
+</div>
+</div>
+<p class="text-gray-400 text-sm">Government of Uttarakhand<br>Official Tourism Portal</p>
+<div class="flex gap-4 mt-6">
+<a href="#" class="text-gray-400 hover:text-white">
+<i class="ri-facebook-fill text-xl"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white">
+<i class="ri-twitter-fill text-xl"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white">
+<i class="ri-instagram-fill text-xl"></i>
+</a>
+<a href="#" class="text-gray-400 hover:text-white">
+<i class="ri-youtube-fill text-xl"></i>
+</a>
+</div>
+</div>
+
+<div>
+<h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+<ul class="space-y-2 text-gray-400">
+<li><a href="#" class="hover:text-white">About Uttarakhand</a></li>
+<li><a href="#" class="hover:text-white">Tourism</a></li>
+<li><a href="#" class="hover:text-white">Destinations</a></li>
+<li><a href="#" class="hover:text-white">Travel Guide</a></li>
+<li><a href="#" class="hover:text-white">FAQs</a></li>
+</ul>
+</div>
+
+<div>
+<h4 class="text-lg font-semibold mb-4">Support</h4>
+<ul class="space-y-2 text-gray-400">
+<li><a href="#" class="hover:text-white">Contact Us</a></li>
+<li><a href="#" class="hover:text-white">Terms & Conditions</a></li>
+<li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+<li><a href="#" class="hover:text-white">Cancellation Policy</a></li>
+<li><a href="#" class="hover:text-white">Emergency Help</a></li>
+</ul>
+</div>
+
+<div>
+<h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+<p class="text-gray-400 text-sm mb-4">Subscribe to our newsletter for latest updates and offers.</p>
+<form onsubmit="event.preventDefault(); subscribeNewsletter()" class="space-y-4">
+<input type="email" placeholder="Enter your email" class="w-full px-4 py-2 rounded-button bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-primary">
+<button type="submit" class="w-full bg-primary text-white px-4 py-2 rounded-button font-medium hover:bg-primary/90">Subscribe</button>
+</form>
+</div>
+</div>
+
+<div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400 text-sm">
+<p>&copy; 2025 Government of Uttarakhand. All rights reserved.</p>
+</div>
+</div>
+</footer>
+
+<script>
+const packages = [
+{
+id: 1,
+name: "Char Dham Yatra Package",
+image: "https://public.readdy.ai/ai/img_res/29fedfe9700355a16cf0bbeb242b68cb.jpg",
+duration: "12 Days",
+price: 45000,
+rating: 4.8,
+description: "Complete spiritual journey covering Yamunotri, Gangotri, Kedarnath and Badrinath temples."
+},
+{
+id: 2,
+name: "Valley of Flowers Trek",
+image: "https://public.readdy.ai/ai/img_res/73bbe58ac03b02fb9422455cf51485bf.jpg",
+duration: "6 Days",
+price: 25000,
+rating: 4.7,
+description: "Trek through the UNESCO World Heritage site during peak flowering season."
+},
+{
+id: 3,
+name: "Rishikesh Adventure Package",
+image: "https://public.readdy.ai/ai/img_res/33e054af69663eed486d8b69905373de.jpg",
+duration: "4 Days",
+price: 18000,
+rating: 4.9,
+description: "Experience river rafting, camping, and yoga in the adventure capital."
+},
+{
+id: 4,
+name: "Nainital Lake District Tour",
+image: "https://public.readdy.ai/ai/img_res/16a972e6df5bf9c4b521506e354d91c9.jpg",
+duration: "5 Days",
+price: 22000,
+rating: 4.6,
+description: "Explore the beautiful lake district and surrounding hill stations."
+}
+];
+
+function renderPackages(packagesList = packages) {
+const container = document.getElementById('packagesList');
+container.innerHTML = packagesList.map(pkg => `
+<div class="bg-white border rounded-lg overflow-hidden">
+<img src="${pkg.image}" alt="${pkg.name}" class="w-full h-48 object-cover">
+<div class="p-4">
+<h3 class="text-lg font-semibold mb-2">${pkg.name}</h3>
+<p class="text-sm text-gray-600 mb-4">${pkg.description}</p>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-4">
+<span class="flex items-center gap-1">
+<i class="ri-time-line text-gray-400"></i>
+<span class="text-sm">${pkg.duration}</span>
+</span>
+<span class="flex items-center gap-1">
+<i class="ri-star-fill text-yellow-400"></i>
+<span class="text-sm">${pkg.rating}</span>
+</span>
+</div>
+<span class="text-lg font-semibold">₹${pkg.price.toLocaleString()}</span>
+</div>
+<button onclick="bookPackage(${pkg.id})" class="w-full bg-primary text-white px-4 py-2 rounded-button font-medium hover:bg-primary/90">Book Now</button>
+</div>
+</div>
+`).join('');
+}
+
+function sortPackages(criteria) {
+let sortedPackages = [...packages];
+switch(criteria) {
+case 'price':
+sortedPackages.sort((a, b) => a.price - b.price);
+break;
+case 'duration':
+sortedPackages.sort((a, b) => parseInt(a.duration) - parseInt(b.duration));
+break;
+case 'rating':
+sortedPackages.sort((a, b) => b.rating - a.rating);
+break;
+}
+renderPackages(sortedPackages);
+}
+
+function selectDuration(button, duration) {
+document.querySelectorAll('[onclick^="selectDuration"]').forEach(btn => {
+btn.classList.remove('bg-primary', 'text-white');
+btn.classList.add('border-gray-200');
+});
+button.classList.add('bg-primary', 'text-white');
+button.classList.remove('border-gray-200');
+}
+
+function bookPackage(id) {
+const pkg = packages.find(p => p.id === id);
+const modal = document.createElement('div');
+modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+modal.innerHTML = `
+<div class="bg-white rounded-lg max-w-md w-full mx-4">
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-4">Book ${pkg.name}</h3>
+<form class="space-y-4" onsubmit="event.preventDefault(); confirmBooking()">
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">Select Date</label>
+<input type="date" required class="w-full px-4 py-2 rounded-button border border-gray-200 text-sm">
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">Number of Travelers</label>
+<input type="number" min="1" required class="w-full px-4 py-2 rounded-button border border-gray-200 text-sm">
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">Special Requests</label>
+<textarea class="w-full px-4 py-2 rounded-button border border-gray-200 text-sm" rows="3"></textarea>
+</div>
+<div class="flex justify-end gap-4 mt-6">
+<button type="button" onclick="this.closest('.fixed').remove()" class="px-4 py-2 text-sm border rounded-button">Cancel</button>
+<button type="submit" class="bg-primary text-white px-6 py-2 rounded-button text-sm font-medium hover:bg-primary/90">Confirm Booking</button>
+</div>
+</form>
+</div>
+</div>
+`;
+document.body.appendChild(modal);
+}
+
+function confirmBooking() {
+const modal = document.createElement('div');
+modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+modal.innerHTML = `
+<div class="bg-white rounded-lg max-w-md w-full mx-4">
+<div class="p-6 text-center">
+<div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-check-line text-3xl text-green-500"></i>
+</div>
+<h3 class="text-xl font-semibold mb-2">Booking Confirmed!</h3>
+<p class="text-gray-600 mb-6">Your booking has been confirmed. We will contact you shortly with more details.</p>
+<button onclick="this.closest('.fixed').remove()" class="bg-primary text-white px-6 py-2 rounded-button text-sm font-medium hover:bg-primary/90">Close</button>
+</div>
+</div>
+`;
+document.body.appendChild(modal);
+}
+
+function subscribeNewsletter() {
+const modal = document.createElement('div');
+modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+modal.innerHTML = `
+<div class="bg-white rounded-lg max-w-md w-full mx-4">
+<div class="p-6 text-center">
+<div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-mail-check-line text-3xl text-green-500"></i>
+</div>
+<h3 class="text-xl font-semibold mb-2">Thank You!</h3>
+<p class="text-gray-600 mb-6">You have successfully subscribed to our newsletter.</p>
+<button onclick="this.closest('.fixed').remove()" class="bg-primary text-white px-6 py-2 rounded-button text-sm font-medium hover:bg-primary/90">Close</button>
+</div>
+</div>
+`;
+document.body.appendChild(modal);
+}
+
+const budgetRange = document.getElementById('budgetRange');
+const budgetValue = document.getElementById('budgetValue');
+
+budgetRange.addEventListener('input', function() {
+budgetValue.textContent = `₹${parseInt(this.value).toLocaleString()}`;
+});
+
+renderPackages();
+</script>
+
+</body>
+</html>

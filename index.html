@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uttarakhand - Simply Heaven</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1e40af",
+              secondary: "#047857",
+            },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      :where([class^="ri-"])::before {
+        content: "\f3c2";
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+  </head>
+  <body class="bg-white">
+    <header class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+      <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between h-20">
+          <div class="flex items-center gap-2">
+            <img
+              src="https://public.readdy.ai/ai/img_res/7b5393632d5d6d7821f1c2848ddb6366.jpg"
+              alt="Uttarakhand Logo"
+              class="h-12 w-12"
+            />
+            <div>
+              <h1 class="text-xl font-semibold">Uttarakhand</h1>
+              <p class="text-sm text-gray-600">Simply Heaven</p>
+            </div>
+          </div>
+          <nav class="hidden lg:flex items-center gap-8">
+            <a
+              href="#"
+              onclick="scrollToSection('home')"
+              class="text-gray-600 hover:text-primary transition-colors duration-200"
+              data-translate="home"
+              >Home</a
+            >
+            <a
+              href="#"
+              onclick="scrollToSection('about')"
+              class="text-primary font-medium transition-colors duration-200"
+              data-translate="about"
+              >About</a
+            >
+            <a
+              href="#"
+              onclick="scrollToSection('tourism')"
+              class="text-gray-600 hover:text-primary transition-colors duration-200"
+              data-translate="tourism"
+              >Tourism</a
+            >
+            <a
+              href="#"
+              onclick="scrollToSection('culture')"
+              class="text-gray-600 hover:text-primary transition-colors duration-200"
+              data-translate="culture"
+              >Culture</a
+            >
+            <a
+              href="#"
+              onclick="scrollToSection('government')"
+              class="text-gray-600 hover:text-primary transition-colors duration-200"
+              data-translate="government"
+              >Government</a
+            >
+            <a
+              href="#"
+              onclick="scrollToSection('services')"
+              class="text-gray-600 hover:text-primary transition-colors duration-200"
+              data-translate="services"
+              >Services</a
+            >
+          </nav>
+          <div class="flex items-center gap-4">
+            <div class="relative">
+              <div class="relative">
+                <button
+                  id="language-selector"
+                  onclick="toggleLanguageDropdown()"
+                  class="appearance-none bg-gray-50 border border-gray-200 rounded-button px-4 py-2 pr-8 text-sm cursor-pointer flex items-center gap-2 min-w-[120px]"
+                >
+                  <span id="selected-language">English</span>
+                  <i class="ri-arrow-down-s-line absolute right-2"></i>
+                </button>
+                <div
+                  id="language-dropdown"
+                  class="hidden absolute top-full left-0 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg z-50"
+                >
+                  <button
+                    onclick="changeLanguage('en')"
+                    class="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 flex items-center gap-2"
+                  >
+                    <span>English</span>
+                  </button>
+                  <button
+                    onclick="changeLanguage('hi')"
+                    class="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 flex items-center gap-2"
+                  >
+                    <span>हिंदी</span>
+                  </button>
+                </div>
+              </div>
+              <script>
+                // Language translations
+                const translations = {
+                  en: {
+                    home: "Home",
+                    about: "About",
+                    tourism: "Tourism",
+                    culture: "Culture",
+                    government: "Government",
+                    services: "Services",
+                    emergencyHelp: "Emergency Help",
+                    // Add more translations as needed
+                  },
+                  hi: {
+                    home: "होम",
+                    about: "परिचय",
+                    tourism: "पर्यटन",
+                    culture: "संस्कृति",
+                    government: "सरकार",
+                    services: "सेवाएं",
+                    emergencyHelp: "आपातकालीन सहायता",
+                    // Add more translations as needed
+                  },
+                };
+                // Check for saved language preference
+                document.addEventListener("DOMContentLoaded", () => {
+                  const savedLanguage =
+                    localStorage.getItem("selectedLanguage") || "en";
+                  changeLanguage(savedLanguage, false);
+                });
+                function toggleLanguageDropdown() {
+                  const dropdown = document.getElementById("language-dropdown");
+                  dropdown.classList.toggle("hidden");
+                }
+                // Close dropdown when clicking outside
+                document.addEventListener("click", (e) => {
+                  if (!e.target.closest("#language-selector")) {
+                    document
+                      .getElementById("language-dropdown")
+                      .classList.add("hidden");
+                  }
+                });
+                function changeLanguage(lang, shouldTranslate = true) {
+                  const selectedLanguage =
+                    document.getElementById("selected-language");
+                  selectedLanguage.textContent =
+                    lang === "en" ? "English" : "हिंदी";
+                  // Save language preference
+                  localStorage.setItem("selectedLanguage", lang);
+                  if (shouldTranslate) {
+                    // Update all translatable content
+                    Object.keys(translations[lang]).forEach((key) => {
+                      const elements = document.querySelectorAll(
+                        `[data-translate="${key}"]`
+                      );
+                      elements.forEach((element) => {
+                        element.textContent = translations[lang][key];
+                      });
+                    });
+                  }
+                  // Close dropdown
+                  document
+                    .getElementById("language-dropdown")
+                    .classList.add("hidden");
+                  // Additional language-specific adjustments (e.g., RTL support for certain languages)
+                  document.documentElement.lang = lang;
+                }
+              </script>
+              <i
+                class="ri-arrow-down-s-line absolute right-2 top-1/2 -translate-y-1/2"
+              ></i>
+            </div>
+            <button
+              onclick="showEmergencyModal()"
+              class="bg-red-600 text-white px-4 py-2 rounded-button text-sm font-medium hover:bg-red-700 whitespace-nowrap flex items-center gap-2"
+            >
+              <i class="ri-alarm-warning-line"></i>
+              <span data-translate="emergencyHelp">Emergency Help</span>
+            </button>
+            <script>
+              function showEmergencyModal() {
+                const modal = document.createElement("div");
+                modal.className =
+                  "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50";
+                modal.innerHTML = `
+<div class="bg-white rounded-lg max-w-2xl w-full mx-4">
+<div class="bg-red-600 p-4 rounded-t-lg flex items-center justify-between">
+<h3 class="text-xl font-semibold text-white flex items-center gap-2">
+<i class="ri-alarm-warning-line"></i>
+Emergency Help
+</h3>
+<button onclick="this.closest('.fixed').remove()" class="text-white hover:text-red-100">
+<i class="ri-close-line text-xl"></i>
+</button>
+</div>
+<div class="p-6 space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<a href="tel:100" class="bg-red-50 p-4 rounded-lg hover:bg-red-100 transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+<i class="ri-police-line text-2xl text-red-600"></i>
+</div>
+<div>
+<p class="font-semibold text-gray-900">Police</p>
+<p class="text-red-600 font-bold">100</p>
+</div>
+</div>
+</a>
+<a href="tel:108" class="bg-red-50 p-4 rounded-lg hover:bg-red-100 transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+<i class="ri-heart-pulse-line text-2xl text-red-600"></i>
+</div>
+<div>
+<p class="font-semibold text-gray-900">Ambulance</p>
+<p class="text-red-600 font-bold">108</p>
+</div>
+</div>
+</a>
+<a href="tel:101" class="bg-red-50 p-4 rounded-lg hover:bg-red-100 transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+<i class="ri-fire-line text-2xl text-red-600"></i>
+</div>
+<div>
+<p class="font-semibold text-gray-900">Fire</p>
+<p class="text-red-600 font-bold">101</p>
+</div>
+</div>
+</a>
+</div>
+<button onclick="sendSOSAlert()" class="w-full bg-red-600 text-white py-4 rounded-lg text-lg font-bold hover:bg-red-700 transition-colors flex items-center justify-center gap-2">
+<i class="ri-alarm-warning-line text-2xl"></i>
+Send SOS Alert
+</button>
+<div class="rounded-lg overflow-hidden border border-gray-200 h-64">
+<img src="https://public.readdy.ai/gen_page/map_placeholder_1280x720.png" alt="Emergency Facilities Map" class="w-full h-full object-cover">
+</div>
+<div class="bg-red-50 p-4 rounded-lg">
+<h4 class="font-semibold text-gray-900 mb-2">Nearby Emergency Facilities</h4>
+<ul class="space-y-2 text-sm">
+<li class="flex items-center gap-2">
+<i class="ri-hospital-line text-red-600"></i>
+<span>Doon Hospital - 2.5 km</span>
+</li>
+<li class="flex items-center gap-2">
+<i class="ri-police-line text-red-600"></i>
+<span>City Police Station - 1.8 km</span>
+</li>
+<li class="flex items-center gap-2">
+<i class="ri-fire-line text-red-600"></i>
+<span>Fire Station - 3.2 km</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+`;
+                document.body.appendChild(modal);
+              }
+              function sendSOSAlert() {
+                // Here you would typically integrate with an emergency alert system
+                showModal(
+                  "SOS Alert Sent",
+                  `
+<div class="text-center">
+<div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-alarm-warning-line text-3xl text-red-600"></i>
+</div>
+<p class="text-gray-600">Emergency services have been notified of your location. Help is on the way.</p>
+</div>
+`
+                );
+              }
+            </script>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section
+        class="relative min-h-[90vh] flex items-center"
+        style="
+          background: url('https://public.readdy.ai/ai/img_res/cc8393b9b0e6da2489c58015deffc8d2.jpg')
+            center/cover;
+        "
+      >
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"
+        ></div>
+        <div class="container mx-auto px-4 relative">
+          <div class="max-w-2xl text-white">
+            <h1 class="text-5xl font-bold mb-6">Welcome to Uttarakhand</h1>
+            <p class="text-xl mb-8">
+              Discover the land where spirituality meets nature's grandeur. From
+              sacred temples to snow-capped peaks, experience the divine beauty
+              of Dev Bhoomi.
+            </p>
+            <div class="flex gap-4">
+              <button
+                onclick="document.querySelector('#featured-destinations').scrollIntoView({behavior:'smooth'})"
+                class="bg-white text-primary px-6 py-3 rounded-button font-medium hover:bg-gray-100 whitespace-nowrap"
+              >
+                Explore Now
+              </button>
+              <a href="planTrip.html" class="inline-block">
+                <button
+                  class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-button font-medium hover:bg-white/10 whitespace-nowrap"
+                >
+                  Plan Your Trip
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-20">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-4">About Uttarakhand</h2>
+          <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+            Discover the divine beauty and rich heritage of Devbhoomi
+            Uttarakhand, where spirituality meets adventure in the lap of the
+            Himalayas.
+          </p>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+              <div class="space-y-4">
+                <h3 class="text-xl font-semibold text-primary">
+                  The Land of Gods
+                </h3>
+                <p class="text-gray-600">
+                  Uttarakhand, also known as Devbhoomi or the Land of Gods, is a
+                  state in northern India that's known for its natural beauty,
+                  pilgrimage sites, and adventure tourism opportunities. The
+                  state is divided into two regions – Garhwal and Kumaon – each
+                  with its distinct cultural heritage.
+                </p>
+              </div>
+              <div class="space-y-4">
+                <h3 class="text-xl font-semibold text-primary">
+                  Rich Biodiversity
+                </h3>
+                <p class="text-gray-600">
+                  Home to diverse flora and fauna, Uttarakhand hosts several
+                  national parks and wildlife sanctuaries. The state's varying
+                  altitude from 300 to 7,800 meters above sea level creates
+                  different ecological zones, supporting unique biodiversity.
+                </p>
+              </div>
+              <div class="space-y-4">
+                <h3 class="text-xl font-semibold text-primary">
+                  Cultural Heritage
+                </h3>
+                <p class="text-gray-600">
+                  The state preserves its rich cultural heritage through
+                  traditional art forms, festivals, and customs. The local
+                  architecture, handicrafts, and folk music reflect the
+                  deep-rooted traditions of the region.
+                </p>
+              </div>
+              <div class="mt-8 grid grid-cols-3 gap-4">
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-primary mb-2">13</div>
+                  <p class="text-sm text-gray-600">Districts</p>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-primary mb-2">95</div>
+                  <p class="text-sm text-gray-600">Development Blocks</p>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-primary mb-2">15,761</div>
+                  <p class="text-sm text-gray-600">Villages</p>
+                </div>
+              </div>
+            </div>
+            <div class="relative">
+              <img
+                src="https://public.readdy.ai/ai/img_res/adebed2409c6c423c99b0b0e40d4adaf.jpg"
+                alt="Uttarakhand Landscape"
+                class="w-full rounded-lg shadow-lg"
+              />
+              <div
+                class="absolute -bottom-6 -right-6 bg-white p-6 rounded-lg shadow-lg max-w-xs"
+              >
+                <div class="flex items-center gap-4 mb-4">
+                  <div
+                    class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center"
+                  >
+                    <i class="ri-map-pin-line text-primary text-2xl"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold">Location</h4>
+                    <p class="text-sm text-gray-600">Northern India</p>
+                  </div>
+                </div>
+                <div class="space-y-2 text-sm text-gray-600">
+                  <p class="flex items-center gap-2">
+                    <i class="ri-landscape-line"></i>
+                    <span>Area: 53,483 km²</span>
+                  </p>
+                  <p class="flex items-center gap-2">
+                    <i class="ri-group-line"></i>
+                    <span>Population: 10.08 million</span>
+                  </p>
+                  <p class="flex items-center gap-2">
+                    <i class="ri-building-line"></i>
+                    <span>Capital: Dehradun</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-4">Quick Access</h2>
+          <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+            Essential services and information at your fingertips. Access
+            government services, tourist information, and more.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div
+              class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div
+                class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4"
+              >
+                <i class="ri-government-line text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">E-Governance</h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Access government services, forms, and applications online.
+              </p>
+              <button
+                onclick="showEGovernanceDetails()"
+                class="text-primary font-medium text-sm flex items-center gap-1"
+              >
+                Learn More
+                <i class="ri-arrow-right-line"></i>
+              </button>
+            </div>
+            <div
+              class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div
+                class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mb-4"
+              >
+                <i class="ri-map-pin-line text-secondary text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Tourism</h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Explore destinations, book tours, and find accommodation.
+              </p>
+              <button
+                onclick="showTourismDetails()"
+                class="text-secondary font-medium text-sm flex items-center gap-1"
+              >
+                Discover
+                <i class="ri-arrow-right-line"></i>
+              </button>
+            </div>
+            <div
+              class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div
+                class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4"
+              >
+                <i class="ri-newspaper-line text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">News & Updates</h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Stay informed with latest news and announcements.
+              </p>
+              <button
+                onclick="showNewsDetails()"
+                class="text-primary font-medium text-sm flex items-center gap-1"
+              >
+                Read More
+                <i class="ri-arrow-right-line"></i>
+              </button>
+            </div>
+            <div
+              class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div
+                class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mb-4"
+              >
+                <i class="ri-building-2-line text-secondary text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Invest in Uttarakhand</h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Explore business opportunities and investment prospects.
+              </p>
+              <button
+                onclick="showInvestmentDetails()"
+                class="text-secondary font-medium text-sm flex items-center gap-1"
+              >
+                Explore
+                <i class="ri-arrow-right-line"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="featured-destinations" class="py-20">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-4">
+            Featured Destinations
+          </h2>
+          <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+            From spiritual retreats to adventure hotspots, discover the diverse
+            attractions of Uttarakhand.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div
+              class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+            >
+              <img
+                src="https://public.readdy.ai/ai/img_res/42e296d100e5cee541f41487d2e7682a.jpg"
+                alt="Kedarnath Temple"
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">Kedarnath Temple</h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  One of the holiest Hindu temples dedicated to Lord Shiva,
+                  located amidst the magnificent Himalayas.
+                </p>
+                <button
+                  onclick="showDestinationDetails('kedarnath')"
+                  class="text-primary font-medium text-sm flex items-center gap-1 cursor-pointer"
+                >
+                  View Details
+                  <i class="ri-arrow-right-line"></i>
+                </button>
+              </div>
+            </div>
+            <div
+              class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+            >
+              <img
+                src="https://public.readdy.ai/ai/img_res/87938f5b329de257c46c9fb43169603f.jpg"
+                alt="Valley of Flowers"
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">Valley of Flowers</h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  A UNESCO World Heritage site known for its meadows of endemic
+                  alpine flowers and diverse flora.
+                </p>
+                <button
+                  onclick="showDestinationDetails('valley')"
+                  class="text-primary font-medium text-sm flex items-center gap-1 cursor-pointer"
+                >
+                  View Details
+                  <i class="ri-arrow-right-line"></i>
+                </button>
+              </div>
+            </div>
+            <div
+              class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+            >
+              <img
+                src="https://public.readdy.ai/ai/img_res/d92c252a94826e836c35064272e8ac84.jpg"
+                alt="Rishikesh"
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">Rishikesh</h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  The Yoga Capital of the World, where spirituality meets
+                  adventure on the banks of the holy Ganges.
+                </p>
+                <button
+                  onclick="showDestinationDetails('rishikesh')"
+                  class="text-primary font-medium text-sm flex items-center gap-1 cursor-pointer"
+                >
+                  View Details
+                  <i class="ri-arrow-right-line"></i>
+                </button>
+              </div>
+            </div>
+            <div
+              class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+            >
+              <img
+                src="https://public.readdy.ai/ai/img_res/8f8b783362021949ca16e85c526ce536.jpg"
+                alt="Nainital"
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">Nainital</h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  A charming hill station built around a natural lake, perfect
+                  for boating and scenic mountain views.
+                </p>
+                <button
+                  onclick="showDestinationDetails('nainital')"
+                  class="text-primary font-medium text-sm flex items-center gap-1 cursor-pointer"
+                >
+                  View Details
+                  <i class="ri-arrow-right-line"></i>
+                </button>
+              </div>
+            </div>
+            <div
+              class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+            >
+              <img
+                src="https://public.readdy.ai/ai/img_res/db4f8652685e49017da761a78736f822.jpg"
+                alt="Auli"
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">Auli</h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  India's premier ski resort destination with breathtaking views
+                  of Nanda Devi and other Himalayan peaks.
+                </p>
+                <button
+                  onclick="showDestinationDetails('auli')"
+                  class="text-primary font-medium text-sm flex items-center gap-1 cursor-pointer"
+                >
+                  View Details
+                  <i class="ri-arrow-right-line"></i>
+                </button>
+              </div>
+            </div>
+            <div
+              class="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+            >
+              <img
+                src="https://public.readdy.ai/ai/img_res/5dd802db20ec3752a30b63cbd2d7be92.jpg"
+                alt="Jim Corbett"
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2">
+                  Jim Corbett National Park
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  India's oldest national park, famous for its Bengal tigers and
+                  diverse wildlife experiences.
+                </p>
+                <button
+                  onclick="showDestinationDetails('corbett')"
+                  class="text-primary font-medium text-sm flex items-center gap-1 cursor-pointer"
+                >
+                  View Details
+                  <i class="ri-arrow-right-line"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-4">Latest Updates</h2>
+          <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+            Stay informed with the latest news, announcements, and events from
+            Uttarakhand.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+                <i class="ri-calendar-line"></i>
+                <span>March 7, 2025</span>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">
+                New Tourism Policy Announced
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Government announces new tourism policy to promote sustainable
+                tourism and local culture.
+              </p>
+              <button
+                onclick="showNewsDetails()"
+                class="text-primary font-medium text-sm flex items-center gap-1"
+              >
+                Read More
+                <i class="ri-arrow-right-line"></i>
+              </button>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+                <i class="ri-calendar-line"></i>
+                <span>March 6, 2025</span>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">
+                Char Dham Yatra Registration Opens
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Online registration for the annual Char Dham Yatra begins. Book
+                your spiritual journey now.
+              </p>
+              <button
+                onclick="showNewsDetails()"
+                class="text-primary font-medium text-sm flex items-center gap-1"
+              >
+                Read More
+                <i class="ri-arrow-right-line"></i>
+              </button>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+                <i class="ri-calendar-line"></i>
+                <span>March 5, 2025</span>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Investment Summit 2025</h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Global investors show interest in Uttarakhand's growing economy
+                at the annual summit.
+              </p>
+              <button
+                onclick="showNewsDetails()"
+                class="text-primary font-medium text-sm flex items-center gap-1"
+              >
+                Read More
+                <i class="ri-arrow-right-line"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-4">Government</h2>
+          <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+            Access information about government departments, officials, and
+            administrative services.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div
+                class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4"
+              >
+                <i class="ri-government-line text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Chief Minister</h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Hon'ble Pushkar Singh Dhami
+              </p>
+              <button
+                onclick="showCMProfile()"
+                class="text-primary font-medium text-sm flex items-center gap-1"
+              >
+                View Profile
+                <i class="ri-arrow-right-line"></i>
+              </button>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div
+                class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4"
+              >
+                <i class="ri-team-line text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Cabinet Ministers</h3>
+              <p class="text-gray-600 text-sm mb-4">
+                View the council of ministers and their portfolios
+              </p>
+              <button
+                onclick="showMinistersList()"
+                class="text-primary font-medium text-sm flex items-center gap-1"
+              >
+                View All Ministers
+                <i class="ri-arrow-right-line"></i>
+              </button>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div
+                class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4"
+              >
+                <i class="ri-building-2-line text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Departments</h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Access various government departments and services
+              </p>
+              <button
+                onclick="showDepartmentsList()"
+                class="text-primary font-medium text-sm flex items-center gap-1"
+              >
+                View Departments
+                <i class="ri-arrow-right-line"></i>
+              </button>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <h3 class="text-lg font-semibold mb-4">
+                Latest Government Orders
+              </h3>
+              <ul class="space-y-4">
+                <li class="flex items-start gap-4">
+                  <div
+                    class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0"
+                  >
+                    <i class="ri-file-list-3-line text-primary text-xl"></i>
+                  </div>
+                  <div>
+                    <p class="font-medium mb-1">
+                      Tourism Development Guidelines 2025
+                    </p>
+                    <p class="text-sm text-gray-600">
+                      Released on March 7, 2025
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start gap-4">
+                  <div
+                    class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0"
+                  >
+                    <i class="ri-file-list-3-line text-primary text-xl"></i>
+                  </div>
+                  <div>
+                    <p class="font-medium mb-1">
+                      Environmental Protection Act Amendment
+                    </p>
+                    <p class="text-sm text-gray-600">
+                      Released on March 5, 2025
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start gap-4">
+                  <div
+                    class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0"
+                  >
+                    <i class="ri-file-list-3-line text-primary text-xl"></i>
+                  </div>
+                  <div>
+                    <p class="font-medium mb-1">
+                      Public Service Delivery Guidelines
+                    </p>
+                    <p class="text-sm text-gray-600">
+                      Released on March 3, 2025
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <h3 class="text-lg font-semibold mb-4">Important Links</h3>
+              <div class="grid grid-cols-2 gap-4">
+                <a
+                  href="#"
+                  class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 hover:bg-gray-100"
+                >
+                  <i class="ri-file-text-line text-primary"></i>
+                  <span class="text-sm font-medium">RTI Portal</span>
+                </a>
+                <a
+                  href="#"
+                  class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 hover:bg-gray-100"
+                >
+                  <i class="ri-auction-line text-primary"></i>
+                  <span class="text-sm font-medium">e-Tender</span>
+                </a>
+                <a
+                  href="#"
+                  class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 hover:bg-gray-100"
+                >
+                  <i class="ri-calendar-event-line text-primary"></i>
+                  <span class="text-sm font-medium">Public Holidays</span>
+                </a>
+                <a
+                  href="#"
+                  class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 hover:bg-gray-100"
+                >
+                  <i class="ri-user-voice-line text-primary"></i>
+                  <span class="text-sm font-medium">Public Grievances</span>
+                </a>
+                <a
+                  href="#"
+                  class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 hover:bg-gray-100"
+                >
+                  <i class="ri-government-line text-primary"></i>
+                  <span class="text-sm font-medium">e-Governance</span>
+                </a>
+                <a
+                  href="#"
+                  class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 hover:bg-gray-100"
+                >
+                  <i class="ri-building-line text-primary"></i>
+                  <span class="text-sm font-medium">Departments</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-20">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-4">Cultural Heritage</h2>
+          <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+            Experience the rich cultural heritage, traditions, and festivals of
+            Uttarakhand.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="relative rounded-lg overflow-hidden">
+              <img
+                src="https://public.readdy.ai/ai/img_res/6bb769116565a26795fd04befa88184e.jpg"
+                alt="Cultural Performance"
+                class="w-full h-full object-cover"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6"
+              >
+                <div class="text-white">
+                  <h3 class="text-xl font-semibold mb-2">
+                    Traditional Folk Dances
+                  </h3>
+                  <p class="text-sm">
+                    Experience the vibrant folk dances that tell stories of our
+                    rich cultural heritage.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-8">
+              <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div
+                  class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4"
+                >
+                  <i class="ri-ancient-gate-line text-primary text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">
+                  Temples & Architecture
+                </h3>
+                <p class="text-gray-600 text-sm">
+                  Ancient temples showcasing unique architectural styles.
+                </p>
+              </div>
+              <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div
+                  class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mb-4"
+                >
+                  <i class="ri-palette-line text-secondary text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Arts & Crafts</h3>
+                <p class="text-gray-600 text-sm">
+                  Traditional handicrafts and artwork by local artisans.
+                </p>
+              </div>
+              <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div
+                  class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4"
+                >
+                  <i class="ri-calendar-event-line text-primary text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Festivals</h3>
+                <p class="text-gray-600 text-sm">
+                  Celebrate traditional festivals and cultural events.
+                </p>
+              </div>
+              <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div
+                  class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mb-4"
+                >
+                  <i class="ri-restaurant-line text-secondary text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Cuisine</h3>
+                <p class="text-gray-600 text-sm">
+                  Savor the authentic flavors of Uttarakhand.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-4">
+            Essential Services
+          </h2>
+          <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+            Access government services and important information with ease.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div
+                class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4"
+              >
+                <i class="ri-file-list-3-line text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Document Services</h3>
+              <ul class="text-gray-600 text-sm space-y-2">
+                <li class="flex items-center gap-2">
+                  <i class="ri-checkbox-circle-line text-green-600"></i>
+                  Birth Certificate
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-checkbox-circle-line text-green-600"></i>
+                  Domicile Certificate
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-checkbox-circle-line text-green-600"></i>
+                  Income Certificate
+                </li>
+              </ul>
+              <button
+                onclick="showServiceForm('documents')"
+                class="mt-4 text-primary font-medium text-sm flex items-center gap-1 cursor-pointer"
+              >
+                Apply Now
+                <i class="ri-arrow-right-line"></i>
+              </button>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div
+                class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mb-4"
+              >
+                <i class="ri-hotel-line text-secondary text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Tourism Services</h3>
+              <ul class="text-gray-600 text-sm space-y-2">
+                <li class="flex items-center gap-2">
+                  <i class="ri-checkbox-circle-line text-green-600"></i>
+                  Hotel Booking
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-checkbox-circle-line text-green-600"></i>
+                  Tour Packages
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-checkbox-circle-line text-green-600"></i>
+                  Travel Guides
+                </li>
+              </ul>
+              <button
+                onclick="showServiceForm('tourism')"
+                class="mt-4 text-secondary font-medium text-sm flex items-center gap-1 cursor-pointer"
+              >
+                Book Now
+                <i class="ri-arrow-right-line"></i>
+              </button>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div
+                class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4"
+              >
+                <i class="ri-emergency-line text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Emergency Services</h3>
+              <ul class="text-gray-600 text-sm space-y-2">
+                <li class="flex items-center gap-2">
+                  <i class="ri-phone-line text-red-600"></i>
+                  Police: 100
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-phone-line text-red-600"></i>
+                  Ambulance: 108
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="ri-phone-line text-red-600"></i>
+                  Fire: 101
+                </li>
+              </ul>
+              <button
+                onclick="showEmergencyContacts()"
+                class="mt-4 text-primary font-medium text-sm flex items-center gap-1 cursor-pointer"
+              >
+                View All Contacts
+                <i class="ri-arrow-right-line"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="bg-gray-900 text-white py-20">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div>
+            <div class="flex items-center gap-2 mb-6">
+              <img
+                src="https://public.readdy.ai/ai/img_res/49bd17cae028189d6412d88aa9877671.jpg"
+                alt="Uttarakhand Logo"
+                class="h-12 w-12"
+              />
+              <div>
+                <h3 class="text-xl font-semibold">Uttarakhand</h3>
+                <p class="text-sm text-gray-400">Simply Heaven</p>
+              </div>
+            </div>
+            <p class="text-gray-400 text-sm">
+              Government of Uttarakhand<br />Official State Portal
+            </p>
+            <div class="flex gap-4 mt-6">
+              <a href="#" class="text-gray-400 hover:text-white">
+                <i class="ri-facebook-fill text-xl"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white">
+                <i class="ri-twitter-fill text-xl"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white">
+                <i class="ri-instagram-fill text-xl"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white">
+                <i class="ri-youtube-fill text-xl"></i>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white">About Uttarakhand</a>
+              </li>
+              <li><a href="#" class="hover:text-white">Tourism</a></li>
+              <li><a href="#" class="hover:text-white">Government</a></li>
+              <li><a href="#" class="hover:text-white">Services</a></li>
+              <li><a href="#" class="hover:text-white">News & Updates</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Important Links</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="#" class="hover:text-white">RTI</a></li>
+              <li><a href="#" class="hover:text-white">Tenders</a></li>
+              <li><a href="#" class="hover:text-white">Careers</a></li>
+              <li><a href="#" class="hover:text-white">Contact Us</a></li>
+              <li><a href="#" class="hover:text-white">Sitemap</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+            <p class="text-gray-400 text-sm mb-4">
+              Subscribe to our newsletter for latest updates.
+            </p>
+            <form class="space-y-4">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                class="w-full px-4 py-2 rounded-button bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-primary"
+              />
+              <button
+                type="submit"
+                onclick="subscribeNewsletter(event)"
+                class="w-full bg-primary text-white px-4 py-2 rounded-button font-medium hover:bg-primary/90 whitespace-nowrap"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+        <div
+          class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400 text-sm"
+        >
+          <p>&copy; 2025 Government of Uttarakhand. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+    <div id="chatbot" class="fixed bottom-6 right-6 z-50">
+      <button
+        onclick="toggleChatbot()"
+        class="bg-primary text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center hover:bg-primary/90"
+      >
+        <i class="ri-customer-service-2-line text-2xl"></i>
+      </button>
+      <div
+        id="chatbox"
+        class="hidden absolute bottom-20 right-0 w-80 bg-white rounded-lg shadow-xl"
+      >
+        <div class="p-4 border-b">
+          <h3 class="text-lg font-semibold">Chat with Us</h3>
+          <p class="text-sm text-gray-600">We're here to help!</p>
+        </div>
+        <div class="h-80 overflow-y-auto p-4" id="chat-messages">
+          <div class="flex gap-2 mb-4">
+            <div
+              class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center"
+            >
+              <i class="ri-customer-service-2-line text-primary"></i>
+            </div>
+            <div class="flex-1">
+              <p class="bg-gray-100 p-3 rounded-lg text-sm">
+                Hello! How can I assist you today?
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="p-4 border-t">
+          <div class="flex gap-2">
+            <input
+              type="text"
+              id="chat-input"
+              placeholder="Type your message..."
+              class="flex-1 px-4 py-2 rounded-button bg-gray-50 border border-gray-200 text-sm focus:outline-none focus:border-primary"
+            />
+            <button
+              onclick="sendMessage()"
+              class="bg-primary text-white px-4 py-2 rounded-button text-sm font-medium hover:bg-primary/90 whitespace-nowrap"
+            >
+              <i class="ri-send-plane-line"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      // Smooth scroll to section
+      function scrollToSection(sectionId) {
+        let section;
+        switch (sectionId) {
+          case "home":
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            return;
+          case "about":
+            section = document.querySelector(".py-20.bg-gray-50");
+            break;
+          case "tourism":
+            section = document.getElementById("featured-destinations");
+            break;
+          case "culture":
+            section = document.querySelector("section:nth-of-type(5)");
+            break;
+          case "government":
+            section = document.querySelector("section:nth-of-type(3)");
+            break;
+          case "services":
+            section = document.querySelector("section:last-of-type");
+            break;
+        }
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+      // Modal component
+      function showModal(title, content) {
+        const modal = document.createElement("div");
+        modal.className =
+          "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50";
+        modal.innerHTML = `
+<div class="bg-white rounded-lg max-w-md w-full mx-4">
+<div class="p-4 border-b">
+<h3 class="text-lg font-semibold">${title}</h3>
+</div>
+<div class="p-4">
+${content}
+</div>
+<div class="p-4 border-t flex justify-end">
+<button onclick="this.closest('.fixed').remove()" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-button text-sm font-medium hover:bg-gray-200">Close</button>
+</div>
+</div>
+`;
+        document.body.appendChild(modal);
+      }
+      // Destination details
+      function showDestinationDetails(destination) {
+        const destinations = {
+          kedarnath: {
+            title: "Kedarnath Temple",
+            content: `
+<div class="space-y-4">
+<img src="https://public.readdy.ai/ai/img_res/80ae4110e2aa5f39b3f2c2873d8db0c8.jpg" class="w-full rounded-lg">
+<p class="text-sm text-gray-600">One of the holiest Hindu temples dedicated to Lord Shiva, located at an altitude of 3,583 m. The temple is one of the twelve Jyotirlingas and is a part of Char Dham yatra.</p>
+<div class="space-y-2">
+<p class="font-medium">Opening Hours: 6:00 AM - 7:00 PM</p>
+<p class="font-medium">Best Time to Visit: May - June, September - October</p>
+<p class="font-medium">Facilities: Helicopter Services, Accommodation, Medical</p>
+</div>
+</div>
+`,
+          },
+          valley: {
+            title: "Valley of Flowers",
+            content: `
+<div class="space-y-4">
+<img src="https://public.readdy.ai/ai/img_res/b2c54e807215ea842386540a75a34b43.jpg" class="w-full rounded-lg">
+<p class="text-sm text-gray-600">A UNESCO World Heritage site featuring over 500 species of wild flowers. The valley transforms into a colorful carpet of flowers during the monsoon season.</p>
+<div class="space-y-2">
+<p class="font-medium">Opening Hours: 7:00 AM - 5:00 PM</p>
+<p class="font-medium">Best Time to Visit: July - September</p>
+<p class="font-medium">Entry Fee: ₹150 for Indians, ₹600 for Foreigners</p>
+</div>
+</div>
+`,
+          },
+          rishikesh: {
+            title: "Rishikesh",
+            content: `
+<div class="space-y-4">
+<img src="https://public.readdy.ai/ai/img_res/cf33c95ba09e2bed8d092cf98081a987.jpg" class="w-full rounded-lg">
+<p class="text-sm text-gray-600">Known as the 'Yoga Capital of the World', Rishikesh offers spiritual experiences, adventure sports, and peaceful retreats along the holy Ganges.</p>
+<div class="space-y-2">
+<p class="font-medium">Activities: Yoga, River Rafting, Camping</p>
+<p class="font-medium">Best Time to Visit: February - May, September - November</p>
+<p class="font-medium">Famous Spots: Laxman Jhula, Ram Jhula, Beatles Ashram</p>
+</div>
+</div>
+`,
+          },
+          nainital: {
+            title: "Nainital",
+            content: `
+<div class="space-y-4">
+<img src="https://public.readdy.ai/ai/img_res/0c05a61d827ab17f868cc7981c2bc105.jpg" class="w-full rounded-lg">
+<p class="text-sm text-gray-600">A picturesque hill station built around the Naini Lake, offering boating, shopping, and panoramic views from Snow View Point.</p>
+<div class="space-y-2">
+<p class="font-medium">Activities: Boating, Cable Car, Mall Road Shopping</p>
+<p class="font-medium">Best Time to Visit: March - June, September - November</p>
+<p class="font-medium">Attractions: Naini Lake, Mall Road, Tiffin Top</p>
+</div>
+</div>
+`,
+          },
+          auli: {
+            title: "Auli",
+            content: `
+<div class="space-y-4">
+<img src="https://public.readdy.ai/ai/img_res/cb831ee85fb76acaec6a4ef02caab579.jpg" class="w-full rounded-lg">
+<p class="text-sm text-gray-600">India's premier ski destination with stunning views of Nanda Devi. Perfect for skiing, snowboarding, and cable car rides.</p>
+<div class="space-y-2">
+<p class="font-medium">Activities: Skiing, Snowboarding, Gondola Ride</p>
+<p class="font-medium">Best Time to Visit: November - March for skiing</p>
+<p class="font-medium">Facilities: Ski Equipment Rental, Training, Accommodation</p>
+</div>
+</div>
+`,
+          },
+          corbett: {
+            title: "Jim Corbett National Park",
+            content: `
+<div class="space-y-4">
+<img src="https://public.readdy.ai/ai/img_res/1b3735d45988037d410ef94ee99cfe46.jpg" class="w-full rounded-lg">
+<p class="text-sm text-gray-600">India's oldest national park, home to Bengal tigers, elephants, and diverse wildlife. Perfect for safari adventures and nature photography.</p>
+<div class="space-y-2">
+<p class="font-medium">Safari Timings: 6:00 AM - 10:00 AM, 2:00 PM - 6:00 PM</p>
+<p class="font-medium">Best Time to Visit: October - June</p>
+<p class="font-medium">Activities: Jeep Safari, Elephant Safari, Bird Watching</p>
+</div>
+</div>
+`,
+          },
+        };
+        showModal(
+          destinations[destination].title,
+          destinations[destination].content
+        );
+      }
+      // Service forms
+      function showServiceForm(service) {
+        const forms = {
+          documents: {
+            title: "Apply for Documents",
+            content: `
+<form class="space-y-4" onsubmit="event.preventDefault(); submitForm('documents')">
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">Document Type</label>
+<select class="w-full px-4 py-2 rounded-button border border-gray-200 text-sm" required>
+<option value="">Select document type</option>
+<option value="birth">Birth Certificate</option>
+<option value="domicile">Domicile Certificate</option>
+<option value="income">Income Certificate</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+<input type="text" class="w-full px-4 py-2 rounded-button border border-gray-200 text-sm" required>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
+<input type="tel" class="w-full px-4 py-2 rounded-button border border-gray-200 text-sm" required>
+</div>
+<button type="submit" class="w-full bg-primary text-white px-4 py-2 rounded-button text-sm font-medium hover:bg-primary/90">Submit Application</button>
+</form>
+`,
+          },
+          tourism: {
+            title: "Book Tourism Services",
+            content: `
+<form class="space-y-4" onsubmit="event.preventDefault(); submitForm('tourism')">
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">Service Type</label>
+<select class="w-full px-4 py-2 rounded-button border border-gray-200 text-sm" required>
+<option value="">Select service type</option>
+<option value="hotel">Hotel Booking</option>
+<option value="tour">Tour Package</option>
+<option value="guide">Travel Guide</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">Check-in Date</label>
+<input type="date" class="w-full px-4 py-2 rounded-button border border-gray-200 text-sm" required>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">Number of People</label>
+<input type="number" min="1" class="w-full px-4 py-2 rounded-button border border-gray-200 text-sm" required>
+</div>
+<button type="submit" class="w-full bg-secondary text-white px-4 py-2 rounded-button text-sm font-medium hover:bg-secondary/90">Book Now</button>
+</form>
+`,
+          },
+        };
+        showModal(forms[service].title, forms[service].content);
+      }
+      // Form submission
+      function submitForm(type) {
+        showModal(
+          "Success",
+          `
+<div class="text-center">
+<div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-check-line text-3xl text-green-500"></i>
+</div>
+<p class="text-gray-600">Your ${type} application has been submitted successfully. We will contact you shortly.</p>
+</div>
+`
+        );
+      }
+      // Emergency contacts
+      function showEmergencyContacts() {
+        showModal(
+          "Emergency Contacts",
+          `
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+<i class="ri-police-line text-xl text-red-600"></i>
+</div>
+<div>
+<p class="font-medium">Police</p>
+<p class="text-sm text-gray-600">Dial 100</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+<i class="ri-heart-pulse-line text-xl text-red-600"></i>
+</div>
+<div>
+<p class="font-medium">Ambulance</p>
+<p class="text-sm text-gray-600">Dial 108</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+<i class="ri-fire-line text-xl text-red-600"></i>
+</div>
+<div>
+<p class="font-medium">Fire</p>
+<p class="text-sm text-gray-600">Dial 101</p>
+</div>
+</div>
+</div>
+`
+        );
+      }
+      // Newsletter subscription
+      function subscribeNewsletter(event) {
+        event.preventDefault();
+        const email = event.target
+          .closest("form")
+          .querySelector('input[type="email"]');
+        if (email.value.trim() !== "") {
+          showModal(
+            "Success",
+            `
+<div class="text-center">
+<div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-mail-check-line text-3xl text-green-500"></i>
+</div>
+<p class="text-gray-600">Thank you for subscribing to our newsletter!</p>
+</div>
+`
+          );
+          email.value = "";
+        }
+      }
+      // Chatbot functionality
+      function toggleChatbot() {
+        const chatbox = document.getElementById("chatbox");
+        chatbox.classList.toggle("hidden");
+      }
+      function sendMessage() {
+        const input = document.getElementById("chat-input");
+        const messages = document.getElementById("chat-messages");
+        if (input.value.trim() !== "") {
+          messages.innerHTML += `
+<div class="flex gap-2 mb-4 justify-end">
+<div class="flex-1">
+<p class="bg-primary text-white p-3 rounded-lg text-sm ml-auto max-w-[80%]">${input.value}</p>
+</div>
+</div>
+`;
+          setTimeout(() => {
+            messages.innerHTML += `
+<div class="flex gap-2 mb-4">
+<div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+<i class="ri-customer-service-2-line text-primary"></i>
+</div>
+<div class="flex-1">
+<p class="bg-gray-100 p-3 rounded-lg text-sm">Thank you for your message. Our team will assist you shortly.</p>
+</div>
+</div>
+`;
+            messages.scrollTop = messages.scrollHeight;
+          }, 1000);
+          input.value = "";
+          messages.scrollTop = messages.scrollHeight;
+        }
+      }
+      // Handle enter key press in chat input
+      document
+        .getElementById("chat-input")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            sendMessage();
+          }
+        });
+      // Quick Access Section Popups
+      function showEGovernanceDetails() {
+        showModal(
+          "E-Governance Services",
+          `
+    <div class="space-y-6">
+      <div class="space-y-4">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+            <i class="ri-government-line text-primary text-2xl"></i>
+          </div>
+          <div>
+            <h4 class="font-medium">Online Services</h4>
+            <p class="text-sm text-gray-600">Access government services from anywhere, anytime</p>
+          </div>
+        </div>
+        <ul class="space-y-3 text-sm text-gray-600">
+          <li class="flex items-center gap-2">
+            <i class="ri-check-line text-green-500"></i>
+            <span>Certificate Applications</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <i class="ri-check-line text-green-500"></i>
+            <span>Bill Payments</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <i class="ri-check-line text-green-500"></i>
+            <span>Property Registration</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <i class="ri-check-line text-green-500"></i>
+            <span>License Applications</span>
+          </li>
+        </ul>
+      </div>
+      <button onclick="showServiceForm('documents')" class="w-full bg-primary text-white px-4 py-2 rounded-button text-sm font-medium hover:bg-primary/90">
+        Apply Now
+      </button>
+    </div>
+  `
+        );
+      }
+      function showTourismDetails() {
+        showModal(
+          "Tourism Services",
+          `
+    <div class="space-y-6">
+      <img src="https://public.readdy.ai/ai/img_res/34d1de8ca569724cbc224f58b23b49cc.jpg" class="w-full rounded-lg">
+      <div class="space-y-4">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="p-4 bg-gray-50 rounded-lg">
+            <i class="ri-hotel-line text-primary text-xl mb-2"></i>
+            <h4 class="font-medium">Accommodations</h4>
+            <p class="text-sm text-gray-600">Hotels & Resorts</p>
+          </div>
+          <div class="p-4 bg-gray-50 rounded-lg">
+            <i class="ri-route-line text-primary text-xl mb-2"></i>
+            <h4 class="font-medium">Tour Packages</h4>
+            <p class="text-sm text-gray-600">Guided Tours</p>
+          </div>
+          <div class="p-4 bg-gray-50 rounded-lg">
+            <i class="ri-compass-3-line text-primary text-xl mb-2"></i>
+            <h4 class="font-medium">Adventure</h4>
+            <p class="text-sm text-gray-600">Trekking & Sports</p>
+          </div>
+          <div class="p-4 bg-gray-50 rounded-lg">
+            <i class="ri-bus-line text-primary text-xl mb-2"></i>
+            <h4 class="font-medium">Transport</h4>
+            <p class="text-sm text-gray-600">Travel Services</p>
+          </div>
+        </div>
+      </div>
+      <button onclick="showServiceForm('tourism')" class="w-full bg-primary text-white px-4 py-2 rounded-button text-sm font-medium hover:bg-primary/90">
+        Book Now
+      </button>
+    </div>
+  `
+        );
+      }
+      function showNewsDetails() {
+        showModal(
+          "Latest News & Updates",
+          `
+    <div class="space-y-4">
+      <div class="border-b pb-4">
+        <div class="flex items-center gap-2 text-sm text-gray-500 mb-2">
+          <i class="ri-calendar-line"></i>
+          <span>March 7, 2025</span>
+        </div>
+        <h4 class="font-medium mb-2">New Tourism Policy Announced</h4>
+        <p class="text-sm text-gray-600">The state government announces new tourism policy focusing on sustainable tourism development and local community involvement.</p>
+      </div>
+      <div class="border-b pb-4">
+        <div class="flex items-center gap-2 text-sm text-gray-500 mb-2">
+          <i class="ri-calendar-line"></i>
+          <span>March 6, 2025</span>
+        </div>
+        <h4 class="font-medium mb-2">Char Dham Yatra Registration Opens</h4>
+        <p class="text-sm text-gray-600">Online registration for the annual Char Dham Yatra begins with new guidelines for pilgrims.</p>
+      </div>
+      <div>
+        <div class="flex items-center gap-2 text-sm text-gray-500 mb-2">
+          <i class="ri-calendar-line"></i>
+          <span>March 5, 2025</span>
+        </div>
+        <h4 class="font-medium mb-2">Investment Summit 2025</h4>
+        <p class="text-sm text-gray-600">Global investors show interest in Uttarakhand's growing economy at the annual summit.</p>
+      </div>
+    </div>
+  `
+        );
+      }
+      function showInvestmentDetails() {
+        showModal(
+          "Invest in Uttarakhand",
+          `
+    <div class="space-y-6">
+      <img src="https://public.readdy.ai/ai/img_res/9b07596c13b0ab6065adef742226dceb.jpg" class="w-full rounded-lg">
+      <div class="space-y-4">
+        <h4 class="font-medium">Investment Opportunities</h4>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="p-4 bg-gray-50 rounded-lg">
+            <h5 class="font-medium mb-2">Tourism</h5>
+            <p class="text-sm text-gray-600">Hotels & Infrastructure</p>
+          </div>
+          <div class="p-4 bg-gray-50 rounded-lg">
+            <h5 class="font-medium mb-2">Agriculture</h5>
+            <p class="text-sm text-gray-600">Food Processing</p>
+          </div>
+          <div class="p-4 bg-gray-50 rounded-lg">
+            <h5 class="font-medium mb-2">IT & Electronics</h5>
+            <p class="text-sm text-gray-600">Tech Parks</p>
+          </div>
+          <div class="p-4 bg-gray-50 rounded-lg">
+            <h5 class="font-medium mb-2">Healthcare</h5>
+            <p class="text-sm text-gray-600">Medical Tourism</p>
+          </div>
+        </div>
+      </div>
+      <button onclick="window.location.href='#'" class="w-full bg-primary text-white px-4 py-2 rounded-button text-sm font-medium hover:bg-primary/90">
+        Download Investment Guide
+      </button>
+    </div>
+  `
+        );
+      }
+      // Government Section Popups
+      function showCMProfile() {
+        showModal(
+          "Chief Minister Profile",
+          `
+    <div class="space-y-6">
+      <div class="flex items-center gap-6">
+        <img src="https://public.readdy.ai/ai/img_res/ead81638ac394b92351ce4d83c2ca6c4.jpg" class="w-24 h-24 rounded-full">
+        <div>
+          <h4 class="font-medium">Pushkar Singh Dhami</h4>
+          <p class="text-sm text-gray-600">Chief Minister of Uttarakhand</p>
+          <p class="text-sm text-gray-600">Assumed office: July 4, 2021</p>
+        </div>
+      </div>
+      <div class="space-y-4">
+        <h5 class="font-medium">Recent Initiatives</h5>
+        <ul class="space-y-2 text-sm text-gray-600">
+          <li class="flex items-center gap-2">
+            <i class="ri-check-line text-green-500"></i>
+            <span>Digital Uttarakhand Mission</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <i class="ri-check-line text-green-500"></i>
+            <span>Green Energy Projects</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <i class="ri-check-line text-green-500"></i>
+            <span>Tourism Development Plan</span>
+          </li>
+        </ul>
+      </div>
+      <div class="flex gap-4">
+        <a href="#" class="flex-1 bg-primary text-white px-4 py-2 rounded-button text-sm font-medium hover:bg-primary/90 text-center">
+          View Timeline
+        </a>
+        <a href="#" class="flex-1 bg-gray-100 text-gray-700 px-4 py-2 rounded-button text-sm font-medium hover:bg-gray-200 text-center">
+          Contact Office
+        </a>
+      </div>
+    </div>
+  `
+        );
+      }
+      function showMinistersList() {
+        showModal(
+          "Cabinet Ministers",
+          `
+    <div class="space-y-6">
+      <div class="grid grid-cols-1 gap-4">
+        <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+          <img src="https://public.readdy.ai/ai/img_res/63cfd832e669ca5e4cfff64e862459ff.jpg" class="w-16 h-16 rounded-full">
+          <div>
+            <h4 class="font-medium">Satpal Maharaj</h4>
+            <p class="text-sm text-gray-600">Tourism, PWD, and Culture</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+          <img src="https://public.readdy.ai/ai/img_res/4197269510a3aeedcaddad005b41a5f4.jpg" class="w-16 h-16 rounded-full">
+          <div>
+            <h4 class="font-medium">Rekha Arya</h4>
+            <p class="text-sm text-gray-600">Women Empowerment and Child Development</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+          <img src="https://public.readdy.ai/ai/img_res/d3d2d9f5bc5abc05c3acc272130d41e1.jpg" class="w-16 h-16 rounded-full">
+          <div>
+            <h4 class="font-medium">Dhan Singh Rawat</h4>
+            <p class="text-sm text-gray-600">Education and Health</p>
+          </div>
+        </div>
+      </div>
+      <button onclick="window.location.href='#'" class="w-full bg-primary text-white px-4 py-2 rounded-button text-sm font-medium hover:bg-primary/90">
+        View All Ministers
+      </button>
+    </div>
+  `
+        );
+      }
+      function showDepartmentsList() {
+        showModal(
+          "Government Departments",
+          `
+    <div class="space-y-6">
+      <div class="grid grid-cols-2 gap-4">
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <i class="ri-government-line text-primary text-xl mb-2"></i>
+          <h4 class="font-medium">Home Department</h4>
+          <p class="text-sm text-gray-600">Law & Order</p>
+        </div>
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <i class="ri-heart-line text-primary text-xl mb-2"></i>
+          <h4 class="font-medium">Health Department</h4>
+          <p class="text-sm text-gray-600">Medical Services</p>
+        </div>
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <i class="ri-book-line text-primary text-xl mb-2"></i>
+          <h4 class="font-medium">Education</h4>
+          <p class="text-sm text-gray-600">Schools & Higher Education</p>
+        </div>
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <i class="ri-road-map-line text-primary text-xl mb-2"></i>
+          <h4 class="font-medium">PWD</h4>
+          <p class="text-sm text-gray-600">Infrastructure Development</p>
+        </div>
+      </div>
+      <div class="space-y-4">
+        <h5 class="font-medium">Quick Links</h5>
+        <div class="grid grid-cols-2 gap-4">
+          <button class="text-left px-4 py-2 bg-gray-100 rounded-button text-sm hover:bg-gray-200">
+            Department Directory
+          </button>
+          <button class="text-left px-4 py-2 bg-gray-100 rounded-button text-sm hover:bg-gray-200">
+            Contact Information
+          </button>
+          <button class="text-left px-4 py-2 bg-gray-100 rounded-button text-sm hover:bg-gray-200">
+            Services Portal
+          </button>
+          <button class="text-left px-4 py-2 bg-gray-100 rounded-button text-sm hover:bg-gray-200">
+            Grievance System
+          </button>
+        </div>
+      </div>
+    </div>
+  `
+        );
+      }
+    </script>
+  </body>
+</html>
